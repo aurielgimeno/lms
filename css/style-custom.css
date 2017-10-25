@@ -1,0 +1,22 @@
+
+		/* custom styles YENG */
+	.noBg{
+		background:none;
+	}
+	.borderless{
+		border:0;
+	}
+	/* for levelBox if selected START*/
+	.selectedLevel{
+	
+		background:#428bca;
+	}
+	.inlineBlock{
+		display:inline-block;
+	}
+	table{
+		margin-top:1em;
+		
+	}
+	/* for levelBox if selected END*/
+/* custom styles END */

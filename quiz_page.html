@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>GNHS Quiz</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!--<link rel="stylesheet" href="css/bootstrap-theme.min.css">-->
+	<script src="js/jq.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<style type="text/css">
+		.btnAttri{
+			
+			width:100px;
+			float:right;
+			margin-right:10px;
+		}
+		.Center{
+			margin: 0 auto;
+			margin-top:0%;
+		}
+		.timerContainer{
+			text-align:right;
+		
+		}
+		#correct{
+			position:fixed;
+			width:40%;
+			height:30%;
+			margin-top:20%;
+			left:30%;
+			text-align:center;
+			background:green;
+			display:none; 
+		}
+		.inlineBlock{
+			display:inline-block;
+		}
+		
+		.choicesContainer{
+			background:none;border:thin solid #dedede;padding:.5em;margin:.5em;
+			-webkit-border-radius: 7px 7px 7px 7px;
+			border-radius: 7px 7px 7px 7px;
+		}
+		.choicesContainer:hover{
+			background:rgba(240,240,240,1);
+			cursor:pointer;
+		}
+		#question{
+			font-size:1.5em;
+			background:rgba(240,240,240,.5);
+		}
+		#question:hover{
+			cursor:default;
+		}
+		.borderless{
+			border:0;
+		}
+		.noBG{
+			background:none;
+		}
+		.txtAlignRight{
+			text-align:right;
+		}
+		.txtAlignLeft{
+			text-align:left;
+		}
+		.floatRight{
+			float:right;
+		}
+		.floatLeft{
+			float:left;
+		}
+		.resultTxt{
+			font-weight: bold;
+		}
+		.btn{
+			font-size:1.2em;
+		}
+		.row{
+			margin-bottom:.3em;
+		}
+		table{
+			font-size:1em;
+			
+		}
+		td{
+			padding:.3em;
+		}
+	</style>
+</head>
+<body>	
+
+
+             <div class="modal-header" style="background:#428bca;z-index:9999;margin-bottom:-100px;border:0">
+				
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 " style="margin:0;padding:0;border-radius:0;">
+					<div class="panel panel-primary Center"  style="margin:0;padding:0;border-radius:0;">
+						<div class="panel-heading">
+							<!--<h4 class="panel-title">SCIENCE Quiz Level 1 (Sept 1 - 5 , 1st Quarter)</h4>-->
+							<div class="row">
+							<div class="col-lg-6">
+								<h4 ><span class="quizPageSubjName"></span> Level <span class="quizPageLevel"></span></h4>
+							</div>
+							<div class="col-lg-6">
+								<h4 class="txtAlignRight" style=""> <span class="quizPageSY"></span> | <span class="quizPageMonthName"></span> | <span class="quizPageMonthQuarterName"></span></h4>
+							</div>
+							</div>
+						</div>
+						
+						<div class="panel-body">
+							
+							
+							<!--instructionDiv START-->
+							<div class="col-lg-12" style="" id="instructionDiv">
+								<div class="panel panel-primary">
+									<div class="panel-heading"><h4>Instructions:</h4></div>
+									<div class="panel-body">
+										<p>Answer the following questions before time runs out. Choose from the choices that will be given.</p>
+										<h4 class="inlineBlock">Number of items:</h4> <h4 class="noOfItems inlineBlock"></h4>
+										<!--
+										<h4>Quiz Coverage</h4>
+										<ol>
+											<li>Sample Lesson no 1</li>
+											<li>Sample Lesson no 2</li>
+											<li>Sample Lesson no 3</li>
+											<li>Sample Lesson no 4</li>
+										</ol>
+										-->
+											<input type="button" id="btn-start-quiz" value="Start Quiz" class="btn btn-primary col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+										
+									</div>
+							</div>
+							
+							</div><!--instructionDiv END-->
+							
+							<!--quizDiv START -->
+							<div class="col-lg-12" style="margin:.5em 0;" id="quizDiv">
+							<div class="col-lg-12">
+							
+								<div class="col-lg-8" style="text-align:left">
+								
+									<!--Item no: <input type="text" name="" id="itemNo" value="0"  class="" disabled/> /<input type="text" name=""  id="noOfItems" disabled/> 
+									-->
+									<h4 class="inlineBlock">Item no: </h4><span id="itemNo" style="margin-left:.5em"></span> /<span id="noOfItems"  style="margin-left:.5em"></span>
+								</div>
+								<div class="col-lg-4" style="text-align:right">
+									<!--Timer:<input type="text" name="" id="gameTimer"  placeholder="Timer" disabled/><br />
+									--><!-- TIMER -->
+									<h4 class="inlineBlock">Timer: </h4><h4 id="gameTimer"  class="inlineBlock" style="margin-left:.5em"></h4>					
+								</div>
+							</div>
+							
+									<textarea class="form-control " rows="3" id="question" placeholder="Question Here..." disabled></textarea>
+								<div class="choicesContainer">
+									
+									<input type="radio" name="choice" id="choice1" class="radioChoice" style="margin-right:.65em;margin-bottom:.5em;"><label for="choice1" id="label-for-choice1" class="inlineBlock" ></label><br />
+					
+								</div>
+								<div class="choicesContainer">
+									<input type="radio" name="choice" id="choice2" class="radioChoice" style="margin-right:.65em;margin-bottom:.5em;"><label for="choice2" id="label-for-choice2" class="inlineBlock"></label><br />
+					
+								</div>
+								<div class="choicesContainer">
+									<input type="radio" name="choice" id="choice3" class="radioChoice" style="margin-right:.65em;margin-bottom:.5em;"><label for="choice3" id="label-for-choice3" class="inlineBlock"></label><br />
+					
+								</div>
+								<div class="choicesContainer">
+									<input type="radio" name="choice" id="choice4" class="radioChoice" style="margin-right:.65em;margin-bottom:.5em;"><label for="choice4" id="label-for-choice4" class="inlineBlock"></label><br />
+				
+								</div>
+								
+								<input type="button" id="btn-submit-answer" value="Submit" class="btn btn-primary  col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+								<input type="text" name="" id="correct"  disabled/><!-- !important correct answer hidden -->
+								
+							</div><!--quizDiv END -->
+							
+							<!--resultDiv START -->
+							<div class="col-lg-12" id="resultDiv" style="display:none;">			
+								<div class="panel panel-primary">
+									<div class="panel-heading">Quiz Result</div>
+									<div class="panel-body">
+									<!--
+										Score:<input type="text" name="" id="score" placeholder="Score" class="" disabled/><br />
+										Status:<input type="text" name="" id="scoreStatus" placeholder="Score" class="" disabled/><br />
+										Passing Score:<input type="text" name="" id="passingScore" /><br />
+										-->
+										<div class="col-lg-4 cl-md-12 col-sm-12 col-xs-12 col-lg-offset-4" >
+										<!--
+											<h4 class="inlineBlock">Your Score:</h4> <span id="score" class="resultTxt"></span><br />
+											<h4 class="inlineBlock">Status:</h4> <span id="scoreStatus" class="resultTxt"></span><br />
+											<h4 class="inlineBlock">Passing Score:</h4> <span id="passingScore" class="resultTxt"></span><br />
+											<h4 class="inlineBlock">No of items:</h4> <span  class="noOfItems resultTxt"></span>
+										-->	
+										<h4 style="text-align:left;font-size:1.3em;" class="txtSaveSuccess">Score successfully save!</h4>
+											<table>
+												
+												<tr>
+													<td>Your Score:</td>
+													<td class="resultTxt txtAlignRight " id="score"></td>
+												</tr>
+												<tr>
+													<td>Status:</td>
+													<td class="resultTxt txtAlignRight" id="scoreStatus">Passed!</td>
+												</tr>
+												<tr>
+													<td>Passing Score:</td>
+													<td class="resultTxt txtAlignRight" id="passingScore">7.5!</td>
+												</tr>
+												<tr>
+													<td>No of items:</td>
+													<td class="resultTxt txtAlignRight noOfItems"></td>
+												</tr>
+											</table>
+										</div>
+										<div class="row">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<input type="button" id="scoreSubmit" value="Submit Score" class="btn btn-primary col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+											</div>
+										</div>
+										<!--
+										<div class="row">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<input type="button" id="exitQuiz" value="Exit" class="btn btn-primary col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+											</div>
+										</div>
+										-->
+										<!--
+										<div class="row">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<a href="quiz_page.html"><input type="button" value="Take Exam Again" class="btn btn-primary col-lg-12 col-md-12 col-sm-12 col-xs-12"/></a>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<input type="button" value="Back to Menu" class="btn btn-primary col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+											</div>
+										</div>
+										-->
+									</div><!-- panel-body END-->
+								</div>
+							</div><!--resultDiv END -->
+							
+						</div>	<!-- panel-body END -->
+						
+					</div>
+				</div>	
+			
+			
+          
+            <!-- /.container-fluid -->
+       
+<script type="text/javascript" src="js/jq-custom.js"></script><!--custom jq script for for functions and variables-->
+	<!--<script type="text/javascript" src="js/quizArray.js"></script><!--custom jq script for for functions and variables-->
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	//btn in results div START
+	$(".txtSaveSuccess").hide();
+	$("#exitQuiz").hide();
+	
+	$("#scoreSubmit").show();//btn in results div END
+	var a = window.sessionStorage.getItem("readyQuizId");
+		//alert("session readyQuizId = "+a);
+	$.ajax({
+		url: "phpfiles/quiz_take_page.php",
+		type: "GET",
+		data: {"readyQuizId":a},
+		dataType: "json",
+		success: function(lesson){
+			//alert(lesson);
+			quizArray = lesson;
+			getQuestionsIndexes();//for getting the no of items
+			//storeQuizArrayToLocalStorage();
+		},
+		error: function(lesson){
+			alert("error");
+		},
+		fail: function(lesson){
+			alert("fail");
+		}
+	});
+	
+	//storeQuizArrayToLocalStorage();
+	
+	var quizPageSubjName = window.sessionStorage.getItem("chooseSubject");
+	var quizPageLevel = window.sessionStorage.getItem("levelId");
+	var quizPageSY = window.sessionStorage.getItem("hiddenSYofThisMonth");
+	var quizPageMonthName = window.sessionStorage.getItem("hiddenMonthName");
+	var quizPageMonthQuarterName = window.sessionStorage.getItem("hiddenMonthQuarterName");
+	
+	$(".quizPageSubjName").html(quizPageSubjName);
+	$(".quizPageLevel").html(quizPageLevel);
+	$(".quizPageSY").html(quizPageSY);
+	$(".quizPageMonthName").html(quizPageMonthName);
+	$(".quizPageMonthQuarterName").html(quizPageMonthQuarterName);
+});
+</script>
+	
+	
+</body>
+</html>
