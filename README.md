@@ -1,4 +1,4 @@
-# lms
+# LMS - Learning Management System
 Learning Management System - for Gordon Heights National High School
 
 ### Description
